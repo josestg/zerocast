@@ -6,6 +6,8 @@ import (
 	"testing"
 )
 
+const size = 310
+
 func TestStringToBytes(t *testing.T) {
 	s := "hello"
 	b := StringToBytes(s)
@@ -25,7 +27,7 @@ func TestStringToBytes(t *testing.T) {
 }
 
 func BenchmarkStringToBytesStandard(b *testing.B) {
-	s := strings.Repeat("hello", 100)
+	s := strings.Repeat("hello", size)
 	b.ResetTimer()
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
@@ -34,7 +36,7 @@ func BenchmarkStringToBytesStandard(b *testing.B) {
 }
 
 func BenchmarkBytesToStringStandard(b *testing.B) {
-	bb := []byte(strings.Repeat("hello", 100))
+	bb := []byte(strings.Repeat("hello", size))
 	b.ResetTimer()
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
@@ -43,7 +45,7 @@ func BenchmarkBytesToStringStandard(b *testing.B) {
 }
 
 func BenchmarkStringToBytes(b *testing.B) {
-	s := strings.Repeat("hello", 100)
+	s := strings.Repeat("hello", size)
 	b.ResetTimer()
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
@@ -67,7 +69,7 @@ func TestBytesToString(t *testing.T) {
 }
 
 func BenchmarkBytesToString(b *testing.B) {
-	bb := []byte(strings.Repeat("hello", 100))
+	bb := []byte(strings.Repeat("hello", size))
 	b.ResetTimer()
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
